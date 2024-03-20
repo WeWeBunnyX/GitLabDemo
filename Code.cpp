@@ -24,4 +24,6 @@ public:
     int getPublicationYear() const {
         return publicationYear;
     }
+        void display() const {
+        cout << "Title: " << title << "\nAuthor: " << author << "\nPublication Year: " << publicationYear << endl;
 };
