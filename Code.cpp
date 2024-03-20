@@ -128,3 +128,68 @@ public:
                     cout << "Invalid choice. Please try again.\n";
             }
         } while (choice != 8);
+        
+static void addBook(Library& library) {
+        string title, author;
+        int publicationYear;
+
+        cout << "Enter book title: ";
+        cin.ignore();
+        getline(cin, title);
+        cout << "Enter author name: ";
+        getline(cin, author);
+        cout << "Enter publication year: ";
+        cin >> publicationYear;
+
+        library.AddBook(Book(title, author, publicationYear));
+        cout << "Book added successfully.\n";
+    }
+
+    static void removeBook(Library& library) {
+        string title;
+        cout << "Enter title of the book to remove: ";
+        cin.ignore();
+        getline(cin, title);
+        library.RemoveBook(title);
+        cout << "Book removed successfully.\n";
+    }
+
+    static void searchBookByTitle(Library& library) {
+        string title;
+        cout << "Enter title of the book to search: ";
+        cin.ignore();
+        getline(cin, title);
+        Book foundBook = library.FindBookByTitle(title);
+        if (foundBook.getTitle() == "") {
+            cout << "Book not found.\n";
+        } else {
+            cout << "Found book:\n";
+            foundBook.display();
+        }
+    }
+
+    
+    static void searchBooksByAuthor(Library& library) {
+        string author;
+        cout << "Enter author name to search books: ";
+        cin.ignore();
+        getline(cin, author);
+        Book foundBook = library.FindBookByAuthor(author);
+        if (foundBook.getTitle() == "") {
+            cout << "No books found by this author.\n";
+        } else {
+            cout << "\nFound book:\n";
+            foundBook.display();
+        }
+    }
+};
+
+int main() {
+    Library library;
+    UserInterface::menu(library);
+    return 0;
+}
+
+
+
+
